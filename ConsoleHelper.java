@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 /**
  * ConsoleHelper class
- * вспомогательный класс, для чтения или записи в консоль
+ * helper class to read or write to the console
  * 17.05.2016
  * Autor by TheZalesskie
  */
@@ -20,24 +20,24 @@ public class ConsoleHelper {
         System.out.println(message);
     }
 
-    //read text message - должен считывать строку с консоли
+    //read text message - I must read a line from the console
     public static String readString() {
         String message;
         while (true) {
             try {
                 message = reader.readLine();
                 break;
-                //Если во время чтения произошло исключение, вывести пользователю сообщение
+                //If while reading the exception occurred , bring the user a message
             } catch (IOException e) {
-                System.out.println("Произошла ошибка при попытке ввода текста. " +
-                        "Попробуйте еще раз.");
+                System.out.println("An error occurred while trying to enter text . " +
+                        "Try again.");
             }
         }
 
         return message;
     }
 
-    //read number - должен возвращать введенное число
+    //read number - should return the number entered
     public static int readInt() {
         int i;
         while (true) {

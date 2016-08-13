@@ -10,22 +10,22 @@ import java.util.*;
  */
 public class ClientGuiModel {
 
-    // Добавь в него множество(set) строк в качестве константного поля allUserNames
+    // Add to it the set (set) strings as constant field allUserNames
     private final Set<String> allUserNames = new HashSet<>();
 
-    // Добавь поле String newMessage, в котором будет храниться новое сообщение, которое получил клиент
+    // Add Field String newMessage, which will contain a new message , which was received by the client
     private String newMessage;
 
 
     /** methods **/
-    // Добавь метод void addUser(String newUserName), который должен добавлять имя участника во множество, хранящее всех участников
+    // Add method void addUser (String newUserName), which must be added the name of the participant in a variety of storing all participants
     public void addUser(String newUserName) {
 
         allUserNames.add(newUserName);
     }
 
 
-    // Добавь метод void deleteUser(String userName), который будет удалять имя участника из множества
+    // Add method void deleteUser (String userName), which will remove the participant's name from the set
     public void deleteUser(String userName) {
 
         allUserNames.remove(userName);
@@ -33,8 +33,8 @@ public class ClientGuiModel {
 
 
     /** getters and setters **/
-    // Добавь геттер для allUserNames, запретив модифицировать возвращенное множество.
-    // Разберись, как это можно сделать с помощью метода класса Collections
+    // Add the getter for allUserNames, prohibiting to modify the returned set.
+    // Look at how this can be done using the Collections class method
     public Set<String> getAllUserNames() {
 
         return Collections.unmodifiableSet(allUserNames);

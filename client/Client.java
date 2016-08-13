@@ -50,13 +50,13 @@ public class Client {
                 this.wait();
             }
         } catch (InterruptedException e) {
-            ConsoleHelper.writeMessage("Ошибка");
+            ConsoleHelper.writeMessage("Eror");
             return;
         }
 
         //After a stream of wait notification , check the value of clientConnected
         if (clientConnected) {
-            ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду 'exit'.");
+            ConsoleHelper.writeMessage("The connection is established . To exit, type the command 'exit'.");
 
             //Reads the message from the console while the client is connected . If the 'exit' command is entered , then come out of the loop
             while (clientConnected) {
@@ -79,7 +79,7 @@ public class Client {
     /** It should seek to enter the server address and return the entered value**/
     protected String getServerAddress() {
 
-        ConsoleHelper.writeMessage("Введите адрес сервера: ");
+        ConsoleHelper.writeMessage("Enter the server address : ");
         return ConsoleHelper.readString();
     }
 
@@ -120,7 +120,7 @@ public class Client {
             connection.send(new Message(MessageType.TEXT, text));
 
         } catch (IOException e) {
-            ConsoleHelper.writeMessage("Ошибка отправки");
+            ConsoleHelper.writeMessage("Error sending");
             clientConnected = false;
         }
     }

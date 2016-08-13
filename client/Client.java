@@ -36,15 +36,15 @@ public class Client {
     /** run **/
     public void run() {
 
-        // Создавать новый сокетный поток с помощью метода getSocketThread
+        // To create a new stream of the socket using the method getSocketThread
         SocketThread socketThread = getSocketThread();
-        // Помечать созданный поток как daemon, это нужно для того, чтобы при выходе
-        // из программы вспомогательный поток прервался автоматически.
+        // Display an established flow as a daemon , it is necessary to exit
+        // From the program helper thread is automatically stopped.
         socketThread.setDaemon(true);
-        // Запустить вспомогательный поток
+        // Run the helper thread
         socketThread.start();
 
-        // Заставить текущий поток ожидать, пока он не получит нотификацию из другого потока
+        // Making the current thread to wait until it receives notification from another thread
         try {
             synchronized (this) {
                 this.wait();
@@ -54,11 +54,11 @@ public class Client {
             return;
         }
 
-        //После того, как поток дождался нотификации, проверь значение clientConnected
+        //After a stream of wait notification , check the value of clientConnected
         if (clientConnected) {
             ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду 'exit'.");
 
-            //Считывай сообщения с консоли пока клиент подключен. Если будет введена команда 'exit', то выйди из цикла
+            //Reads the message from the console while the client is connected . If the 'exit' command is entered , then come out of the loop
             while (clientConnected) {
                 String message;
                 if (!(message = ConsoleHelper.readString()).equals("exit")) {
@@ -71,12 +71,12 @@ public class Client {
             }
         }
         else {
-            ConsoleHelper.writeMessage("Произошла ошибка во время работы клиента.");
+            ConsoleHelper.writeMessage("An error occurred during client work.");
         }
     }
 
 
-    /** Должен запросить ввод адреса сервера и вернуть введенное значение**/
+    /** It should seek to enter the server address and return the entered value**/
     protected String getServerAddress() {
 
         ConsoleHelper.writeMessage("Введите адрес сервера: ");
@@ -84,18 +84,18 @@ public class Client {
     }
 
 
-    /** Должен запрашивать ввод порта сервера и возвращать его **/
+    /** Must ask for the server port entry and return it **/
     protected int getServerPort() {
 
-        ConsoleHelper.writeMessage("Введите порт сервера: ");
+        ConsoleHelper.writeMessage("Enter the server port: ");
         return ConsoleHelper.readInt();
     }
 
 
-    /** Должен запрашивать и возвращать имя пользователя **/
+    /** Must request and return the user name **/
     protected String getUserName() {
 
-        ConsoleHelper.writeMessage("Введите имя пользователя: ");
+        ConsoleHelper.writeMessage("Enter your username : ");
         return ConsoleHelper.readString();
     }
 
@@ -106,14 +106,14 @@ public class Client {
     }
 
 
-    /** должен создавать и возвращать новый объект класса SocketThread **/
+    /** should create and return a new object of class SocketThread **/
     protected SocketThread getSocketThread() {
 
         return new SocketThread();
     }
 
 
-    /**  создает новое текстовое сообщение, используя переданный текст и отправляет его серверу через соединение connection **/
+    /**  It creates a new text message using the transmitted text and sends it to the server through the connection **/
     protected void sendTextMessage(String text) {
 
         try {
@@ -133,10 +133,10 @@ public class Client {
         public void run() {
 
             try {
-                // Создай новый объект класса java.net.Socket c запросом сервера и порта
+                // Create a new class object java.net.Socket c server request and port
                 Socket socket = new Socket(getServerAddress(), getServerPort());
 
-                // Создай объект класса Connection, используя сокет
+                // Make a Connection object class using a socket
                 Client.this.connection = new Connection(socket);
 
 
@@ -153,27 +153,27 @@ public class Client {
         }
 
 
-        /** Этот метод будет реализовывать главный цикл обработки сообщений сервера **/
+        /** This method will implement the main loop processing server message **/
         protected void clientMainLoop() throws IOException, ClassNotFoundException {
 
             while (true) {
 
-                // В цикле получать сообщения, используя соединение connection
+                // In the cycle of receiving messages using the Connect connection
                 Message message = connection.receive();
 
                 switch (message.getType()) {
 
-                    // Если это текстовое сообщение (тип TEXT), обработай его с помощью метода processIncomingMessage()
+                    // If it is a text message (type TEXT), process it using the method processIncomingMessage()
                     case TEXT:
                         processIncomingMessage(message.getData());
                         break;
 
-                    // Если это сообщение с типом USER_ADDED, обработай его с помощью метода informAboutAddingNewUser()
+                    // If the message with the type of USER_ADDED, process it using the method informAboutAddingNewUser()
                     case USER_ADDED:
                         informAboutAddingNewUser(message.getData());
                         break;
 
-                    // Если это сообщение с типом USER_REMOVED, обработай его с помощью метода informAboutDeletingNewUser()
+                    // If the message with the type of USER_REMOVED, process it using the method informAboutDeletingNewUser()
                     case USER_REMOVED:
                         informAboutDeletingNewUser(message.getData());
                         break;
@@ -190,26 +190,26 @@ public class Client {
 
             while (true) {
 
-                // В цикле получать сообщения, используя соединение connection
+                // In a series of receive messages using the compound connection
                 Message message = connection.receive();
 
                 switch (message.getType()) {
 
-                    // 	Если тип полученного сообщения NAME_REQUEST (сервер запросил имя)
+                    // 	If the type of the received message NAME_REQUEST ( requested server name)
                     case NAME_REQUEST: {
 
-                        // запросить ввод имени пользователя с помощью метода getUserName()
-                        // создать новое сообщение с типом USER_NAME и введенным именем, отправить сообщение серверу.
+                        // Request a user name using getUserName () method
+                        // Create a new message with the type USER_NAME and entered the name , send a message to the server .
                         String userName = getUserName();
                         connection.send(new Message(MessageType.USER_NAME, userName));
                         break;
                     }
 
-                    // Если тип полученного сообщения NAME_ACCEPTED (сервер принял имя)
+                    // If the type of the received message NAME_ACCEPTED ( server took the name )
                     case NAME_ACCEPTED: {
 
-                        // значит сервер принял имя клиента, нужно об этом сообщить главному потоку, он этого очень ждет.
-                        // Сделай это с помощью метода notifyConnectionStatusChanged(), передав в него true. После этого выйди из метода.
+                        // Means the server accepted the client's name , it is necessary to inform about this the main thread , that he is waiting for .
+                        // Do this by using the method notifyConnectionStatusChanged (), passing it true. After that come out of the method.
                         notifyConnectionStatusChanged(true);
                         return;
                     }
@@ -222,27 +222,26 @@ public class Client {
         }
 
 
-        /** должен выводить текст message в консоль **/
+        /** must display the text message to the console **/
         protected void processIncomingMessage(String message) {
             ConsoleHelper.writeMessage(message);
         }
 
 
-        /** должен выводить в консоль информацию о том, что участник с именем userName присоединился к чату **/
+        /** must display information in the console that the party named userName joined the chat **/
         protected void informAboutAddingNewUser(String userName) {
             ConsoleHelper.writeMessage("участник " + userName + " присоединился к чату");
         }
 
 
-        /**  должен выводить в консоль, что участник с именем userName покинул чат **/
+        /**  should output to the console that the participant named userName left the chat **/
         protected void informAboutDeletingNewUser(String userName) {
             ConsoleHelper.writeMessage("участник " + userName + " покинул чат");
         }
 
 
-        /** Устанавливать значение поля clientConnected класса Client в соответствии с
-         переданным параметром.
-         Оповещать (пробуждать ожидающий) основной поток класса Client **/
+        /** Уrehydrating field value clientConnected Client Class in accordance with the
+         pass parameters . Notify ( waiting to awaken ) the main stream class Client **/
         protected void notifyConnectionStatusChanged(boolean clientConnected) {
 
 

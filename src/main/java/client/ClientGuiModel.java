@@ -1,4 +1,4 @@
-package com.javarush.test.level30.lesson15.big01.client;
+package client;
 
 import java.util.*;
 
@@ -11,7 +11,7 @@ import java.util.*;
 public class ClientGuiModel {
 
     // Add to it the set (set) strings as constant field allUserNames
-    private final Set<String> allUserNames = new HashSet<>();
+    private final Set<String> allUserNames = new HashSet<String>();
 
     // Add Field String newMessage, which will contain a new message , which was received by the client
     private String newMessage;

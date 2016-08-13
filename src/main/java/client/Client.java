@@ -1,16 +1,13 @@
-package com.javarush.test.level30.lesson15.big01.client;
-
-import com.javarush.test.level30.lesson15.big01.Connection;
-import com.javarush.test.level30.lesson15.big01.ConsoleHelper;
-import com.javarush.test.level30.lesson15.big01.Message;
-import com.javarush.test.level30.lesson15.big01.MessageType;
-
+package client;
+import connection.Connection;
+import connection.Message;
+import connection.MessageType;
+import console.ConsoleHelper;
 
 import java.io.IOException;
 import java.net.Socket;
 
 
-import static com.javarush.test.level30.lesson15.big01.ConsoleHelper.readString;
 
 /**
  * Client class
@@ -136,7 +133,7 @@ public class Client {
                 // Create a new class object java.net.Socket c server request and port
                 Socket socket = new Socket(getServerAddress(), getServerPort());
 
-                // Make a Connection object class using a socket
+                // Make a connection.Connection object class using a socket
                 Client.this.connection = new Connection(socket);
 
 
@@ -179,7 +176,7 @@ public class Client {
                         break;
 
                     default:
-                        throw new IOException("Unexpected MessageType");
+                        throw new IOException("Unexpected connection.MessageType");
                 }
             }
         }
@@ -215,7 +212,7 @@ public class Client {
                     }
 
                     default: {
-                        throw new IOException("Unexpected MessageType");
+                        throw new IOException("Unexpected connection.MessageType");
                     }
                 }
             }
@@ -240,7 +237,7 @@ public class Client {
         }
 
 
-        /** Уrehydrating field value clientConnected Client Class in accordance with the
+        /**  field value clientConnected Client Class in accordance with the
          pass parameters . Notify ( waiting to awaken ) the main stream class Client **/
         protected void notifyConnectionStatusChanged(boolean clientConnected) {
 

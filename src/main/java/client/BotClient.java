@@ -1,6 +1,8 @@
-package com.javarush.test.level30.lesson15.big01.client;
+package client;
 
-import com.javarush.test.level30.lesson15.big01.ConsoleHelper;
+
+
+import console.ConsoleHelper;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -13,6 +15,7 @@ import java.util.Calendar;
  * @autor TheZalesskie
  */
 public class BotClient extends Client {
+
 
     private static int botsCounter = 0;
 
@@ -65,7 +68,7 @@ public class BotClient extends Client {
             }
             if (dateFormat != null)
             {
-                sendTextMessage("Информация для " + senderName + ": " + dateFormat.format(Calendar.getInstance().getTime()));
+                sendTextMessage("info for " + senderName + ": " + dateFormat.format(Calendar.getInstance().getTime()));
             }
 
         }

@@ -1,11 +1,11 @@
-package com.javarush.test.level30.lesson15.big01;
+package console;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * ConsoleHelper class
+ * console.ConsoleHelper class
  * helper class to read or write to the console
  * 17.05.2016
  * Autor by TheZalesskie

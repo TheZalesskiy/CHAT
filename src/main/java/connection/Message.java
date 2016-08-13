@@ -1,9 +1,9 @@
-package com.javarush.test.level30.lesson15.big01;
+package connection;
 
 import java.io.Serializable;
 
 /**
- * Message class
+ * connection.Message class
  * class responsible for forwarded messages
  * 17.05.2016
  * Autor by TheZalesskie

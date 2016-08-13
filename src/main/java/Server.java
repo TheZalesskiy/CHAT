@@ -1,4 +1,7 @@
-package com.javarush.test.level30.lesson15.big01;
+import connection.Connection;
+import connection.Message;
+import connection.MessageType;
+import console.ConsoleHelper;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -71,9 +74,9 @@ public class Server {
         @Override
         public void run() {
 
-            ConsoleHelper.writeMessage("Establishing a connection with the address " + socket.getRemoteSocketAddress());
+            ConsoleHelper.writeMessage("User a connection with the address " + socket.getRemoteSocketAddress());
             String clientName = null;
-            //created Connection
+            //created connection.Connection
             try (Connection connection = new Connection(socket)) {
                 //Show a message that a new connection to a remote location
                 ConsoleHelper.writeMessage("Connecting to the port: " + connection.getRemoteSocketAddress());

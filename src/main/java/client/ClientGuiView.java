@@ -1,4 +1,4 @@
-package com.javarush.test.level30.lesson15.big01.client;
+package client;
 
 import javax.swing.*;
 import java.awt.*;

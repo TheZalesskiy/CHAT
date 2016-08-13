@@ -1,11 +1,11 @@
-package com.javarush.test.level30.lesson15.big01;
+package connection;
 
 import java.io.*;
 import java.net.Socket;
 import java.net.SocketAddress;
 
 /**
- * Connection class
+ * connection.Connection class
  * the connection between the client and the server class
  * 17.05.2016
  * Autor by TheZalesskie

@@ -1,7 +1,7 @@
-package com.javarush.test.level30.lesson15.big01;
+package connection;
 
 /**
- * MessageType class
+ * connection.MessageType class
  * 17.05.2016
  * Autor by TheZalesskie
  */

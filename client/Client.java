@@ -230,13 +230,13 @@ public class Client {
 
         /** must display information in the console that the party named userName joined the chat **/
         protected void informAboutAddingNewUser(String userName) {
-            ConsoleHelper.writeMessage("участник " + userName + " присоединился к чату");
+            ConsoleHelper.writeMessage("participant " + userName + " joined the chat");
         }
 
 
         /**  should output to the console that the participant named userName left the chat **/
         protected void informAboutDeletingNewUser(String userName) {
-            ConsoleHelper.writeMessage("участник " + userName + " покинул чат");
+            ConsoleHelper.writeMessage("participant " + userName + " left the chat");
         }
 
 

@@ -30,10 +30,10 @@ public class BotClient extends Client {
 
         @Override
         protected void processIncomingMessage(String message) {
-            // Вывести в консоль текст полученного сообщения message
+            // Display text in the console message received message
             ConsoleHelper.writeMessage(message);
 
-            // Получить из message имя отправителя и текст сообщения. Они разделены ": "
+            // Get the message from the sender's name and a message. They are separated by ":"
             String senderName = " ";
             String senderMessageText;
 
@@ -45,7 +45,7 @@ public class BotClient extends Client {
             }
 
             SimpleDateFormat dateFormat = null;
-            // Отправить ответ в зависимости от текста принятого сообщения. Если текст сообщения:
+            // Send the answer depending on the text of the received message. If the message text:
             if("дата".equalsIgnoreCase(senderMessageText)){
                 dateFormat = new SimpleDateFormat("d.MM.YYYY");
             }else if ("день".equalsIgnoreCase(senderMessageText)){
@@ -73,20 +73,22 @@ public class BotClient extends Client {
 
     @Override
     protected SocketThread getSocketThread() {
-        //Он должен создавать и возвращать объект класса BotSocketThread
+        //He should create and return an object of class BotSocketThread
         return new BotSocketThread();
     }
 
 
     @Override
     protected boolean shouldSentTextFromConsole() {
-        //Он должен всегда возвращать false. Мы не хотим, чтобы бот отправлял текст введенный в консоль.
+        //It must always return false. We do not want the bot to send the text entered into the console.
         return false;
     }
 
     @Override
-    // метод должен генерировать новое имя бота, например: date_bot_XX, где XX – любое число от 0 до 99.
-    // Этот метод должен возвращать каждый раз новое значение, на случай, если на сервере захотят зарегистрироваться несколько
+    /**
+     * method should generate a new bot's name, for example: date_bot_XX, where XX - any number from 0 to 99.
+      * This method should return each time a new value, in case you want to create an account on the server several
+     */
     protected String getUserName() {
         if (botsCounter == 99) {
             botsCounter = 0;

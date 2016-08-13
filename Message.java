@@ -4,14 +4,14 @@ import java.io.Serializable;
 
 /**
  * Message class
- * класс, отвечающий за пересылаемые сообщения
+ * class responsible for forwarded messages
  * 17.05.2016
  * Autor by TheZalesskie
  */
 public class Message implements Serializable {
-    //тип сообщения
+    //type message
     private final MessageType type;
-    //данные сообщения
+    //data message
     private final String data;
 
     public Message(MessageType type) {

@@ -6,7 +6,7 @@ import java.net.SocketAddress;
 
 /**
  * Connection class
- * класс соединения между клиентом и сервером
+ * the connection between the client and the server class
  * 17.05.2016
  * Autor by TheZalesskie
  */
@@ -22,7 +22,7 @@ public class Connection implements Closeable {
         out = new ObjectOutputStream(socket.getOutputStream());
     }
 
-    //read message - должен записывать(сериализовать) сообщение message в ObjectOutputStream
+    //read message - I must write ( serialize ) message in the message ObjectOutputStream
     public void send(Message message) throws IOException {
         synchronized (out) {
             out.writeObject(message);
@@ -30,7 +30,7 @@ public class Connection implements Closeable {
         }
     }
 
-    //write data - должен читать (десериализовать) данные из ObjectInputStream
+    //write data - should read ( deserialized) data from ObjectInputStream
     public Message receive() throws IOException,
             ClassNotFoundException{
         Message message;
@@ -40,7 +40,7 @@ public class Connection implements Closeable {
         }
     }
 
-    //return remote address - возвращающий удаленный адрес сокетного соединения
+    //return remote address - returns the address of a remote socket connection
     public SocketAddress getRemoteSocketAddress(){
         return socket.getRemoteSocketAddress();
     }

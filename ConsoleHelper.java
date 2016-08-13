@@ -46,8 +46,8 @@ public class ConsoleHelper {
                 break;
                 //
             } catch (NumberFormatException e) {
-                System.out.println("Произошла ошибка при попытке ввода числа. " +
-                        "Попробуйте еще раз.");
+                System.out.println("An error occurred while trying to enter the number. " +
+"Try again");
             }
         }
 

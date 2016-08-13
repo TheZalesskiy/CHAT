@@ -23,8 +23,8 @@ public class BotClient extends Client {
     public class BotSocketThread extends SocketThread {
         @Override
         protected void clientMainLoop() throws IOException, ClassNotFoundException {
-            sendTextMessage("Привет чатику. Я бот. Понимаю команды: дата, день, " +
-                    "месяц, год, время, час, минуты, секунды.");
+            sendTextMessage("Hello chatik . I bot . I understand the team : date, day , " +
+" Month, year , time , hour , minute, second");
             super.clientMainLoop();
         }
 

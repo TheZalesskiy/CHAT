@@ -7,22 +7,22 @@ package com.javarush.test.level30.lesson15.big01.client;
  * @autor TheZalesskie
  */
 public class ClientGuiController extends Client {
-    // Создай и проинициализируй поле, отвечающее за модель ClientGuiModel model.
+    // Create and initialize the field , responsible for the model ClientGuiModel model.
     private ClientGuiModel model = new ClientGuiModel();
-    //Создай и проинициализируй поле, отвечающее за представление ClientGuiView view.
+    //Create and initialize the field , responsible for the presentation of ClientGuiView view.
     private ClientGuiView view = new ClientGuiView(this);
 
     public static void main(String[] args) {
         new ClientGuiController().run();
     }
     /** methods **/
-    // должен создавать и возвращать объект типа GuiSocketThread.
+    // should create and return an object of type GuiSocketThread.
     @Override
     protected SocketThread getSocketThread() {
         return new GuiSocketThread();
     }
-    // должен получать объект SocketThread через метод getSocketThread()и вызывать у него метод run().
-    // Разберись, почему нет необходимости вызывать метод run в отдельном потоке, как мы это делали для консольного клиента.
+    // Must receive object SocketThread through getSocketThread () method and cause him run () method .
+    // Understand why there is no need to call the run method in a separate thread , as we did for the console client.
     @Override
     public void run() {
         getSocketThread().run();
@@ -49,27 +49,27 @@ public class ClientGuiController extends Client {
 
 
     /** inner class GuiSocketThread**/
-    //Добавь внутренний класс GuiSocketThread унаследованный от SocketThread. Класс GuiSocketThread должен быть публичным.
+    //Add GuiSocketThread inner class inherits from SocketThread. GuiSocketThread class must be public.
     public class GuiSocketThread extends SocketThread {
-        // должен устанавливать новое сообщение у модели и вызывать обновление вывода сообщений у представления.
+        // shall establish a new message from the model and cause upgrade output messages in the view.
         @Override
         protected void processIncomingMessage(String message) {
             model.setNewMessage(message);
             view.refreshMessages();
         }
-        // должен добавлять нового пользователя в модель и вызывать обновление вывода пользователей у отображения.
+        // I must add a new user in the model output and cause upgrade users from display.
         @Override
         protected void informAboutAddingNewUser(String userName) {
             model.addUser(userName);
             view.refreshUsers();
         }
-        // должен удалять пользователя из модели и вызывать обновление вывода пользователей у отображения.
+        // must remove the user from the model output and cause upgrade users from display.
         @Override
         protected void informAboutDeletingNewUser(String userName) {
             model.deleteUser(userName);
             view.refreshUsers();
         }
-        // должен вызывать аналогичный метод у представления.
+        // should cause a similar method in the view.
         @Override
         protected void notifyConnectionStatusChanged(boolean clientConnected) {
             view.notifyConnectionStatusChanged(clientConnected);
